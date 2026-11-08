@@ -277,3 +277,10 @@ footer { padding: 25px var(--page-gutter); border-top: 1px solid var(--line); co
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }
+
+.google-button { gap: 10px; }
+.auth-divider { display: flex; align-items: center; gap: 12px; margin: 18px 0; color: var(--muted); font-size: .85rem; }
+.auth-divider::before, .auth-divider::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.footer-parent { display: block; margin-top: 6px; }
+.footer-parent a { color: var(--teal); font-weight: 650; }
+.footer-parent a:hover { text-decoration: underline; }

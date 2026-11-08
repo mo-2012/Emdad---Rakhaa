@@ -44,6 +44,7 @@
       auth_switch_signup: "جديد في إمداد؟ أنشئ حسابًا", auth_switch_signin: "لديك حساب بالفعل؟ سجّل الدخول",
       auth_signup_success: "تم إنشاء الحساب. تحقق من بريدك إذا كان التأكيد مفعّلًا، ثم سجّل الدخول.",
       auth_error: "تعذّر إكمال تسجيل الدخول. يُرجى المحاولة مرة أخرى.",
+      auth_google: "المتابعة باستخدام Google", auth_or: "أو",
       config_missing: "أضف رابط مشروع Supabase ومفتاح anon إلى ملف config.js بجوار index.html.",
       onboarding_title: "تسجيل شركتك", onboarding_body: "تُحفظ بيانات الشركة بأمان. ويتولى فريق إمداد إدارة حالة التحقق.",
       company_name: "اسم الشركة", company_tax_id: "رقم التسجيل الضريبي المصري (اختياري)",
@@ -54,6 +55,7 @@
       verification_suspended: "موقوف", no_company: "لا يوجد ملف شركة بعد.",
       create_company: "تسجيل شركة", loading: "جارٍ التحميل…", error_loading: "تعذّر تحميل البيانات.",
       footer_note: "إمداد · سوق مستلزمات الأعمال في مصر · الجنيه المصري",
+      footer_parent: "إحدى شركات Rakhaa Investments",
       request_failed: "حدث خطأ. تحقق من الاتصال والإعدادات ثم حاول مرة أخرى.",
       my_orders: "طلباتي", become_seller: "ابدأ البيع", seller_apply_note: "يجب التحقق من الشركة قبل تفعيل المتجر.",
       seller_intro: "أدر منتجات متجرك وطلبات عملائك.", select_company: "الشركة المعتمدة",
@@ -162,6 +164,7 @@
       auth_switch_signin: "Already registered? Sign in",
       auth_signup_success: "Account created. Check your email if confirmation is enabled, then sign in.",
       auth_error: "We could not complete authentication. Please try again.",
+      auth_google: "Continue with Google", auth_or: "or",
       config_missing: "Add your Supabase URL and anon key to config.js next to index.html.",
       onboarding_title: "Register your company",
       onboarding_body: "Company details are stored securely. Verification status is managed by EMDAD staff.",
@@ -174,6 +177,7 @@
       no_company: "No company profile yet.", create_company: "Register a company",
       loading: "Loading…", error_loading: "Could not load information.",
       footer_note: "EMDAD · Business supplies marketplace in Egypt · EGP",
+      footer_parent: "A Rakhaa Investments company",
       request_failed: "Something went wrong. Check your connection and configuration, then retry.",
       my_orders: "My orders", become_seller: "Start selling",
       seller_apply_note: "Your company must be verified before a store can be activated.",
@@ -1506,6 +1510,51 @@
     } finally { button.disabled = false; }
   });
 
+  document.getElementById("google-signin").addEventListener("click", () => {
+    showMessage(document.getElementById("auth-message"), "");
+    showMessage(document.getElementById("auth-error"), "");
+    if (!configured) { showMessage(document.getElementById("auth-error"), t("config_missing")); return; }
+    const redirectTo = location.origin + "/auth";
+    location.assign(supabaseUrl + "/auth/v1/authorize?provider=google&redirect_to=" + encodeURIComponent(redirectTo));
+  });
+
+  async function completeOAuthSignIn() {
+    const raw = location.hash.startsWith("#") ? location.hash.slice(1) : "";
+    if (!raw || raw.startsWith("/")) return;
+    const params = new URLSearchParams(raw);
+    const accessToken = params.get("access_token");
+    const failure = params.get("error") || params.get("error_code");
+    if (!accessToken && !failure) return;
+    history.replaceState(null, "", location.pathname + location.search);
+    if (!accessToken) {
+      console.error("Google sign-in failed.", params.get("error_description") || failure);
+      showMessage(document.getElementById("auth-error"), t("auth_error"));
+      return;
+    }
+    try {
+      const pending = {
+        access_token: accessToken,
+        refresh_token: params.get("refresh_token"),
+        token_type: params.get("token_type") || "bearer",
+        expires_in: Number(params.get("expires_in")) || 3600,
+        expires_at: Number(params.get("expires_at")) || undefined
+      };
+      session = pending;
+      pending.user = await api("/auth/v1/user");
+      saveSession(pending);
+      let returnPath = "/";
+      try {
+        returnPath = sessionStorage.getItem("emdad-return-path") || "/";
+        sessionStorage.removeItem("emdad-return-path");
+      } catch (storageError) { console.warn("Could not restore the requested page.", storageError); }
+      history.replaceState(null, "", returnPath.startsWith("/") ? returnPath : "/");
+    } catch (error) {
+      console.error("Could not finish Google sign-in.", error);
+      saveSession(null);
+      showMessage(document.getElementById("auth-error"), t("auth_error"));
+    }
+  }
+
   document.getElementById("company-form").addEventListener("submit", async (event) => {
     event.preventDefault();
     const button = document.getElementById("company-submit");
@@ -1743,9 +1792,11 @@
   applyLocale();
   updateNavigation();
   void loadCategories();
-  if (session) void loadProfile().catch((error) => {
-    console.error("Could not validate the current account.", error);
-    saveSession(null);
+  void completeOAuthSignIn().then(() => {
+    if (session) void loadProfile().catch((error) => {
+      console.error("Could not validate the current account.", error);
+      saveSession(null);
+    });
+    return navigate();
   });
-  void navigate();
 }());
