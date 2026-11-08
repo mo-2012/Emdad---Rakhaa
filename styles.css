@@ -10,11 +10,11 @@
   background: #f5f7fa;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
-  --navy: #142d45;
-  --navy-soft: #1c3c56;
-  --teal: #167c80;
-  --teal-dark: #11696c;
-  --teal-pale: #eaf5f4;
+  --navy: #0b2e23;
+  --navy-soft: #144536;
+  --teal: #0f5a41;
+  --teal-dark: #0a4331;
+  --teal-pale: #e8f2ed;
   --muted: #647383;
   --line: #dce3e9;
   --white: #fff;
@@ -284,3 +284,6 @@ footer { padding: 25px var(--page-gutter); border-top: 1px solid var(--line); co
 .footer-parent { display: block; margin-top: 6px; }
 .footer-parent a { color: var(--teal); font-weight: 650; }
 .footer-parent a:hover { text-decoration: underline; }
+.parent-bar { padding: 7px var(--page-gutter); background: var(--teal); color: #fff; font-size: .78rem; text-align: center; letter-spacing: .02em; }
+.parent-bar a { color: #fff; opacity: .92; }
+.parent-bar a:hover { opacity: 1; text-decoration: underline; }

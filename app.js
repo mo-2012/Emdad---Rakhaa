@@ -55,7 +55,7 @@
       verification_suspended: "موقوف", no_company: "لا يوجد ملف شركة بعد.",
       create_company: "تسجيل شركة", loading: "جارٍ التحميل…", error_loading: "تعذّر تحميل البيانات.",
       footer_note: "إمداد · سوق مستلزمات الأعمال في مصر · الجنيه المصري",
-      footer_parent: "إحدى شركات Rakhaa Investments",
+      footer_parent: "إحدى شركات رخاء للاستثمارات",
       request_failed: "حدث خطأ. تحقق من الاتصال والإعدادات ثم حاول مرة أخرى.",
       my_orders: "طلباتي", become_seller: "ابدأ البيع", seller_apply_note: "يجب التحقق من الشركة قبل تفعيل المتجر.",
       seller_intro: "أدر منتجات متجرك وطلبات عملائك.", select_company: "الشركة المعتمدة",
@@ -1514,11 +1514,12 @@
     showMessage(document.getElementById("auth-message"), "");
     showMessage(document.getElementById("auth-error"), "");
     if (!configured) { showMessage(document.getElementById("auth-error"), t("config_missing")); return; }
-    const redirectTo = location.origin + "/auth";
+    const redirectTo = location.origin + "/";
     location.assign(supabaseUrl + "/auth/v1/authorize?provider=google&redirect_to=" + encodeURIComponent(redirectTo));
   });
 
   async function completeOAuthSignIn() {
+    if (location.hash.startsWith("#/")) { history.replaceState(null, "", location.hash.slice(1)); return; }
     const raw = location.hash.startsWith("#") ? location.hash.slice(1) : "";
     if (!raw || raw.startsWith("/")) return;
     const params = new URLSearchParams(raw);
