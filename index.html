@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#142d45">
+    <meta name="description" content="كل احتياجات شركتك من مصدر واحد">
+    <title>إمداد | EMDAD</title>
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="إمداد | EMDAD">
+    <meta property="og:title" content="إمداد | مستلزمات أعمالك من مصدر موثوق">
+    <meta property="og:description" content="سوق موثوق للمستلزمات الصناعية ومستلزمات الشركات في مصر.">
+    <meta property="og:locale" content="ar_EG">
+    <meta name="twitter:card" content="summary">
+    <link rel="canonical" href="./">
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+    <link rel="stylesheet" href="./styles.css">
+    <script type="application/ld+json" id="structured-data">
+      {"@context":"https://schema.org","@type":"Organization","name":"إمداد | EMDAD","description":"سوق للمستلزمات الصناعية ومستلزمات الشركات في مصر."}
+    </script>
+    <script type="application/ld+json">
+      {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"كيف يتم الدفع عند الإطلاق؟","acceptedAnswer":{"@type":"Answer","text":"الدفع عند الاستلام؛ يسجل كل مورد حالة طلبه."}},{"@type":"Question","name":"هل يمكن لشركتي الشراء والبيع؟","acceptedAnswer":{"@type":"Answer","text":"نعم، بعد التحقق من الشركة واعتماد المتجر."}},{"@type":"Question","name":"ماذا أفعل إذا لم أجد المنتج؟","acceptedAnswer":{"@type":"Answer","text":"أرسل طلب توريد خاصًا بالمواصفات والكميات المطلوبة."}}]}
+    </script>
+    <script src="./config.js"></script>
+    <script defer src="./app.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="إمداد">
+        <span class="brand-mark">إ</span>
+        <span data-i18n="brand">إمداد</span>
+      </a>
+      <nav aria-label="التنقل الرئيسي">
+        <a href="/" data-i18n="nav_home">الرئيسية</a>
+        <a href="/shop" data-i18n="nav_shop">المتجر</a>
+        <a href="/cart" class="cart-link"><span data-i18n="nav_cart">السلة</span> <span id="cart-count" class="cart-count">0</span></a>
+        <a id="dashboard-link" href="/dashboard" hidden data-i18n="nav_dashboard">بوابة الشركة</a>
+        <a id="seller-link" href="/seller" hidden data-i18n="seller_center">مركز البائع</a>
+        <a id="staff-link" href="/operations" hidden data-i18n="operations_center">إدارة العمليات</a>
+        <a id="auth-link" href="/auth" data-i18n="nav_sign_in">تسجيل الدخول</a>
+        <button id="signout-button" class="link-button" type="button" hidden data-i18n="nav_sign_out">تسجيل الخروج</button>
+        <button id="language-button" class="link-button" type="button">English</button>
+      </nav>
+    </header>
+
+    <div id="global-message" class="notice" role="status" hidden></div>
+
+    <main>
+      <section class="page" data-page="home">
+        <div class="hero">
+          <div class="hero-copy">
+            <span class="eyebrow" data-i18n="hero_eyebrow">مستلزمات الأعمال، بطريقة أبسط</span>
+            <h1 data-i18n="hero_title">وفّر احتياجات شركتك من مصدر موثوق.</h1>
+            <p data-i18n="hero_body">سوق موثوق للمستلزمات الصناعية ومستلزمات الشركات في مصر.</p>
+            <div class="hero-actions">
+              <a class="button primary" href="#categories" data-i18n="browse_categories">استكشف الفئات</a>
+              <a class="button secondary" href="/auth" data-i18n="nav_sign_in">تسجيل الدخول</a>
+            </div>
+          </div>
+          <div class="hero-panel" aria-hidden="true">
+            <span class="panel-caption">EMDAD · EGYPT</span>
+            <strong>إمداد</strong>
+            <span class="panel-line"></span>
+            <span class="panel-copy" data-i18n="tagline">كل احتياجات شركتك من مصدر واحد</span>
+          </div>
+        </div>
+        <section class="section" id="categories">
+          <div class="section-heading">
+            <span class="eyebrow">01 / EMDAD</span>
+            <h2 data-i18n="categories_title">تصفح حسب الفئة</h2>
+          </div>
+          <p id="config-notice" class="notice" hidden></p>
+          <p id="category-loading" data-i18n="categories_loading">جارٍ تحميل الفئات…</p>
+          <p id="category-error" class="notice error" hidden></p>
+          <p id="category-empty" hidden></p>
+          <div id="category-grid" class="category-grid"></div>
+        </section>
+        <section class="section proof-section">
+          <div class="section-heading"><span class="eyebrow">01 / EMDAD</span><h2 data-i18n="why_emdad">توريد الأعمال بثقة</h2><p data-i18n="why_emdad_body">كتالوج واضح، موردون معتمدون، وتسعير حسب الكمية.</p></div>
+          <div class="value-grid">
+            <article class="value-card"><span>01</span><h3 data-i18n="category_a">المواد الخام الصناعية</h3><p data-i18n="value_materials">ابحث عن المواد والمكونات التي تحتاجها منشأتك.</p></article>
+            <article class="value-card"><span>02</span><h3 data-i18n="category_b">قطع الغيار</h3><p data-i18n="value_parts">قارن خيارات الموردين واطلب بالكميات المناسبة.</p></article>
+            <article class="value-card"><span>03</span><h3 data-i18n="category_c">المستلزمات الكهربائية</h3><p data-i18n="value_supply">اطلب احتياجات شركتك من منصة واحدة.</p></article>
+          </div>
+        </section>
+        <section class="section how-section">
+          <div class="section-heading"><span class="eyebrow">02 / SIMPLE PROCUREMENT</span><h2 data-i18n="how_it_works">كيف يعمل إمداد</h2></div>
+          <ol class="steps-grid">
+            <li><span>01</span><strong data-i18n="step_browse">اكتشف المنتجات</strong></li>
+            <li><span>02</span><strong data-i18n="step_compare">قارن المواصفات والكميات</strong></li>
+            <li><span>03</span><strong data-i18n="step_order">أرسل طلبك</strong></li>
+            <li><span>04</span><strong data-i18n="step_receive">استلم من المورد</strong></li>
+          </ol>
+        </section>
+        <section class="section faq-section">
+          <div class="section-heading"><span class="eyebrow">03 / FAQ</span><h2 data-i18n="faq_title">أسئلة شائعة</h2></div>
+          <details><summary data-i18n="faq_payment_q">كيف يتم الدفع عند الإطلاق؟</summary><p data-i18n="faq_payment_a">الدفع عند الاستلام؛ يسجل كل مورد حالة طلبه.</p></details>
+          <details><summary data-i18n="faq_seller_q">هل يمكن لشركتي الشراء والبيع؟</summary><p data-i18n="faq_seller_a">نعم، بعد التحقق من الشركة واعتماد المتجر.</p></details>
+          <details><summary data-i18n="faq_request_q">ماذا أفعل إذا لم أجد المنتج؟</summary><p data-i18n="faq_request_a">أرسل طلب توريد خاصًا بالمواصفات والكميات المطلوبة.</p></details>
+        </section>
+      </section>
+
+      <section class="page section" data-page="shop" hidden>
+        <div class="section-heading shop-heading">
+          <div><span class="eyebrow" data-i18n="catalog_eyebrow">سوق إمداد</span><h1 data-i18n="shop_title">مستلزمات الأعمال</h1></div>
+          <p data-i18n="shop_subtitle">منتجات الموردين المعتمدين فقط. الأسعار بالجنيه المصري.</p>
+        </div>
+        <form id="shop-filters" class="filter-bar">
+          <label class="search-field"><span data-i18n="search_label">ابحث عن منتج</span><input id="shop-query" type="search" maxlength="100" placeholder="حديد، كابلات، مضخات..."></label>
+          <label><span data-i18n="category_filter">الفئة</span><select id="shop-category"><option value="" data-i18n="all_categories">كل الفئات</option></select></label>
+          <label><span data-i18n="sort_label">ترتيب حسب</span><select id="shop-sort"><option value="newest" data-i18n="sort_newest">الأحدث</option><option value="price_asc" data-i18n="sort_price_asc">السعر: الأقل أولًا</option><option value="price_desc" data-i18n="sort_price_desc">السعر: الأعلى أولًا</option></select></label>
+          <button class="button primary" type="submit" data-i18n="search_button">بحث</button>
+        </form>
+        <p id="shop-loading" class="loading-line" data-i18n="loading">جارٍ التحميل…</p>
+        <p id="shop-error" class="notice error" hidden></p>
+        <p id="shop-empty" class="empty-state" hidden></p>
+        <div id="product-grid" class="product-grid"></div>
+        <div class="pagination"><button id="shop-more" class="button secondary-dark" type="button" hidden data-i18n="load_more">عرض المزيد</button></div>
+      </section>
+
+      <section class="page section product-page" data-page="product" hidden>
+        <a href="/shop" class="back-link" data-i18n="back_to_shop">العودة للمتجر</a>
+        <p id="product-loading" data-i18n="loading">جارٍ التحميل…</p>
+        <p id="product-error" class="notice error" hidden></p>
+        <div id="product-detail"></div>
+      </section>
+
+      <section class="page section" data-page="cart" hidden>
+        <div class="section-heading"><span class="eyebrow">EMDAD / 04</span><h1 data-i18n="cart_title">سلة المشتريات</h1><p data-i18n="cart_estimate_note">الأسعار المعروضة تقديرية؛ يعيد الخادم احتساب السعر والمخزون عند تأكيد الطلب.</p></div>
+        <div id="cart-lines" class="cart-lines"></div>
+        <div id="cart-empty" class="empty-state" hidden><p data-i18n="cart_empty">سلتك فارغة حاليًا.</p><a class="button primary" href="/shop" data-i18n="browse_products">تصفح المنتجات</a></div>
+        <div id="checkout-panel" class="checkout-panel" hidden>
+          <div id="cart-total" class="cart-total"></div>
+          <form id="checkout-form" class="checkout-form">
+            <h2 data-i18n="delivery_details">بيانات التوصيل</h2>
+            <p id="checkout-auth-warning" class="notice" hidden></p>
+            <label><span data-i18n="delivery_name">اسم المستلم</span><input id="delivery-name" maxlength="160" required></label>
+            <label><span data-i18n="delivery_phone">رقم الهاتف</span><input id="delivery-phone" type="tel" autocomplete="tel" maxlength="30" required></label>
+            <label><span data-i18n="company_city">المدينة</span><input id="delivery-city" maxlength="100" required></label>
+            <label><span data-i18n="delivery_address">العنوان بالتفصيل</span><textarea id="delivery-address" minlength="5" maxlength="500" required></textarea></label>
+            <button id="checkout-submit" class="button primary" type="submit" data-i18n="place_order">تأكيد الطلب بالدفع عند الاستلام</button>
+            <p id="checkout-error" class="notice error" hidden></p>
+          </form>
+        </div>
+      </section>
+
+      <section class="page section requests-page" data-page="requests" hidden>
+        <div class="section-heading"><span class="eyebrow">EMDAD / REQUESTS</span><h1 data-i18n="requests_title">طلبات التوريد الخاصة</h1><p data-i18n="requests_intro">أرسل مواصفاتك متعددة البنود، وسيتابع فريق المشتريات طلبك.</p></div>
+        <form id="request-form" class="request-form">
+          <label><span data-i18n="request_title_label">عنوان الطلب</span><input id="request-title" maxlength="200" required></label>
+          <label><span data-i18n="request_description_label">تفاصيل وموعد التوريد</span><textarea id="request-description" minlength="10" maxlength="10000" required></textarea></label>
+          <div class="section-heading compact-heading"><h2 data-i18n="request_items">بنود ومواصفات الطلب</h2></div>
+          <div id="request-items" class="request-items"></div>
+          <button id="add-request-item" class="button secondary-dark" type="button" data-i18n="add_request_item">إضافة بند</button>
+          <label><span data-i18n="request_attachments">مرفقات اختيارية (PDF أو صورة، حتى 25 ميجابايت)</span><input id="request-files" type="file" accept=".pdf,image/png,image/jpeg,image/webp" multiple></label>
+          <button id="request-submit" class="button primary" type="submit" data-i18n="submit_request">إرسال الطلب</button>
+          <p id="request-error" class="notice error" hidden></p>
+          <p id="request-success" class="notice success" hidden></p>
+        </form>
+        <div class="section-heading"><h2 data-i18n="my_requests">طلباتي السابقة</h2></div>
+        <div id="request-list" class="request-list"></div>
+      </section>
+
+      <section class="page form-page" data-page="auth" hidden>
+        <section class="form-card">
+          <span class="eyebrow" data-i18n="brand">إمداد</span>
+          <h1 data-i18n="auth_title">حساب شركتك</h1>
+          <p id="auth-config-notice" class="notice" hidden></p>
+          <form id="auth-form">
+            <label id="name-field" hidden>
+              <span data-i18n="auth_name">الاسم الكامل</span>
+              <input id="auth-name" name="name" autocomplete="name" maxlength="160">
+            </label>
+            <label>
+              <span data-i18n="auth_email">البريد الإلكتروني</span>
+              <input id="auth-email" name="email" type="email" autocomplete="email" required>
+            </label>
+            <label>
+              <span data-i18n="auth_password">كلمة المرور</span>
+              <input id="auth-password" name="password" type="password" minlength="8" autocomplete="current-password" required>
+            </label>
+            <button id="auth-submit" class="button primary full-width" type="submit" data-i18n="auth_sign_in">تسجيل الدخول</button>
+          </form>
+          <p id="auth-message" class="notice success" role="status" hidden></p>
+          <p id="auth-error" class="notice error" role="alert" hidden></p>
+          <button id="auth-switch" class="link-button form-switch" type="button" data-i18n="auth_switch_signup">جديد في إمداد؟ أنشئ حسابًا</button>
+        </section>
+      </section>
+
+      <section class="page form-page" data-page="onboarding" hidden>
+        <section class="form-card">
+          <span class="eyebrow">EMDAD / 02</span>
+          <h1 data-i18n="onboarding_title">تسجيل شركتك</h1>
+          <p class="muted" data-i18n="onboarding_body">تُحفظ بيانات الشركة بأمان. ويتولى فريق إمداد إدارة حالة التحقق.</p>
+          <form id="company-form">
+            <label><span data-i18n="company_name">اسم الشركة</span><input id="company-name" name="company-name" maxlength="160" required></label>
+            <label><span data-i18n="company_tax_id">رقم التسجيل الضريبي المصري (اختياري)</span><input id="company-tax-id" name="tax-id" inputmode="numeric" pattern="[0-9]{9,14}"></label>
+            <label><span data-i18n="company_city">المدينة</span><input id="company-city" name="city" maxlength="100" required></label>
+            <button id="company-submit" class="button primary full-width" type="submit" data-i18n="onboarding_submit">حفظ الشركة</button>
+          </form>
+          <p id="company-error" class="notice error" role="alert" hidden></p>
+        </section>
+      </section>
+
+      <section class="page section dashboard" data-page="dashboard" hidden>
+        <div class="section-heading">
+          <span class="eyebrow">EMDAD / 03</span>
+          <h1 data-i18n="dashboard_title">بوابة الشركة</h1>
+          <p data-i18n="dashboard_body">ملف شركتك وحالة التحقق.</p>
+        </div>
+        <p id="dashboard-loading" data-i18n="loading">جارٍ التحميل…</p>
+        <p id="dashboard-error" class="notice error" hidden></p>
+        <div id="company-list" class="company-list"></div>
+        <div id="company-empty" class="empty-state" hidden>
+          <p data-i18n="no_company">لا يوجد ملف شركة بعد.</p>
+          <a class="button primary" href="/onboarding" data-i18n="create_company">تسجيل شركة</a>
+        </div>
+        <div class="portal-grid">
+          <section class="portal-panel">
+            <div class="panel-heading"><h2 data-i18n="my_orders">طلباتي</h2><a href="/requests" data-i18n="my_requests">طلبات التوريد</a></div>
+            <div id="buyer-orders" class="order-list"></div>
+          </section>
+          <section class="portal-panel">
+            <div class="panel-heading"><h2 data-i18n="become_seller">ابدأ البيع</h2><a href="/seller" data-i18n="seller_center">مركز البائع</a></div>
+            <p class="muted" data-i18n="seller_apply_note">يجب التحقق من الشركة قبل تفعيل المتجر.</p>
+          </section>
+        </div>
+      </section>
+
+      <section class="page section seller-page" data-page="seller" hidden>
+        <div class="section-heading"><span class="eyebrow">EMDAD / SELLER</span><h1 data-i18n="seller_center">مركز البائع</h1><p data-i18n="seller_intro">أدر منتجات متجرك وطلبات عملائك.</p></div>
+        <p id="seller-error" class="notice error" hidden></p>
+        <div id="seller-apply-panel" class="form-card seller-apply">
+          <h2 data-i18n="become_seller">ابدأ البيع</h2>
+          <label><span data-i18n="select_company">الشركة المعتمدة</span><select id="seller-company" required></select></label>
+          <label><span data-i18n="store_name">اسم المتجر</span><input id="seller-store-name" maxlength="160"></label>
+          <label><span data-i18n="store_description">نبذة عن المتجر</span><textarea id="seller-store-description" maxlength="3000"></textarea></label>
+          <button id="seller-apply" class="button primary" type="button" data-i18n="apply_seller">تقديم طلب متجر</button>
+        </div>
+        <div id="seller-workspace" hidden>
+          <div class="seller-tabs">
+            <button class="tab-button active" data-seller-tab="products" type="button" data-i18n="seller_products">المنتجات</button>
+            <button class="tab-button" data-seller-tab="orders" type="button" data-i18n="seller_orders">الطلبات</button>
+          </div>
+          <section id="seller-products-panel">
+            <div class="panel-heading"><h2 data-i18n="seller_products">المنتجات</h2><button id="new-product" class="button primary" type="button" data-i18n="add_product">إضافة منتج</button></div>
+            <div id="seller-products" class="seller-product-list"></div>
+            <form id="product-form" class="product-form" hidden>
+              <input id="edit-product-id" type="hidden">
+              <h3 data-i18n="product_form_title">بيانات المنتج</h3>
+              <div class="form-grid">
+                <label><span data-i18n="product_name_ar">اسم المنتج بالعربية</span><input id="product-name-ar" maxlength="200" required></label>
+                <label><span data-i18n="product_name_en">Product name in English</span><input id="product-name-en" maxlength="200" required></label>
+                <label><span data-i18n="category_filter">الفئة</span><select id="product-category" required></select></label>
+                <label><span data-i18n="product_brand">العلامة التجارية</span><input id="product-brand" maxlength="120"></label>
+                <label><span data-i18n="product_sku">SKU</span><input id="product-sku" maxlength="100"></label>
+                <label><span data-i18n="product_unit">وحدة البيع</span><input id="product-unit" maxlength="40" value="قطعة" required></label>
+                <label><span data-i18n="product_price">سعر الوحدة (ج.م)</span><input id="product-price" type="number" min="0.01" step="0.01" required></label>
+                <label><span data-i18n="product_min_qty">الحد الأدنى للطلب</span><input id="product-min-qty" type="number" min="1" step="1" value="1" required></label>
+                <label><span data-i18n="product_stock">المخزون</span><input id="product-stock" type="number" min="0" step="1" required></label>
+                <label><span data-i18n="product_shipping">الشحن لكل بند (ج.م)</span><input id="product-shipping" type="number" min="0" step="0.01" value="0" required></label>
+                <label><span data-i18n="product_vat">ضريبة القيمة المضافة</span><select id="product-vat"><option value="14">14%</option><option value="0">0%</option></select></label>
+                <label class="span-two"><span data-i18n="product_images">صور المنتج (حتى 8 صور، PNG/JPG/WebP، 5 ميجابايت للصورة)</span><input id="product-images" type="file" accept="image/png,image/jpeg,image/webp" multiple></label>
+                <label class="span-two"><span data-i18n="product_description_ar">الوصف بالعربية</span><textarea id="product-description-ar" maxlength="10000"></textarea></label>
+                <label class="span-two"><span data-i18n="product_description_en">Description in English</span><textarea id="product-description-en" maxlength="10000"></textarea></label>
+                <label class="span-two"><span data-i18n="product_specs">المواصفات (سطر لكل خاصية: الاسم: القيمة)</span><textarea id="product-specs"></textarea></label>
+                <label class="span-two"><span data-i18n="product_tiers">أسعار الكميات (كل سطر: الحد الأدنى، السعر)</span><textarea id="product-tiers" placeholder="100, 45"></textarea></label>
+              </div>
+              <p id="commission-hint" class="notice"></p>
+              <div class="hero-actions"><button class="button primary" type="submit" data-i18n="save_product">حفظ المنتج</button><button id="cancel-product" class="button secondary-dark" type="button" data-i18n="cancel">إلغاء</button></div>
+              <p id="product-save-error" class="notice error" hidden></p>
+            </form>
+          </section>
+          <section id="seller-orders-panel" hidden><h2 data-i18n="seller_orders">الطلبات</h2><div id="seller-orders" class="order-list"></div></section>
+        </div>
+      </section>
+
+      <section class="page section operations-page" data-page="operations" hidden>
+        <div class="section-heading"><span class="eyebrow">EMDAD / OPERATIONS</span><h1 data-i18n="operations_center">إدارة العمليات</h1><p data-i18n="operations_intro">أدوات العمل حسب صلاحيات حسابك.</p></div>
+        <p id="operations-error" class="notice error" hidden></p>
+        <div class="seller-tabs operations-tabs">
+          <button class="tab-button active" data-operations-tab="requests" type="button" data-i18n="requests_title">طلبات التوريد الخاصة</button>
+          <button class="tab-button" data-operations-tab="products" type="button" data-i18n="product_reviews">مراجعة المنتجات</button>
+          <button class="tab-button" data-operations-tab="sellers" type="button" data-i18n="seller_applications">طلبات البائعين</button>
+          <button class="tab-button" data-operations-tab="companies" type="button" data-i18n="company_verification">التحقق من الشركات</button>
+          <button id="categories-operations-tab" class="tab-button" data-operations-tab="categories" type="button" data-i18n="manage_categories">إدارة الفئات</button>
+          <button id="users-operations-tab" class="tab-button" data-operations-tab="users" type="button" data-i18n="manage_users">إدارة المستخدمين</button>
+          <button id="finance-operations-tab" class="tab-button" data-operations-tab="finance" type="button" data-i18n="finance_settlement">تسوية العمولات</button>
+        </div>
+        <div id="operations-content" class="operations-content"></div>
+      </section>
+    </main>
+
+    <footer data-i18n="footer_note">للأعمال في مصر · الجنيه المصري</footer>
+  </body>
+</html>
